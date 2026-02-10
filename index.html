@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walentynka</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Czy zostaniesz moją walentynką? 💖</h1>
+        
+        <div class="buttons-container">
+            <button class="btn yes-btn" onclick="location.href='page2.html'">Ofc</button>
+            <button class="btn no-btn" id="noBtn">Nope</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+
+        noBtn.addEventListener('mouseover', () => {
+            // Pobieramy wymiary okna
+            const width = window.innerWidth - noBtn.offsetWidth;
+            const height = window.innerHeight - noBtn.offsetHeight;
+
+            // Losujemy nową pozycję
+            const randomX = Math.floor(Math.random() * width);
+            const randomY = Math.floor(Math.random() * height);
+
+            // KLUCZOWE ZMIANY:
+            // 1. Ustawiamy position: fixed, żeby przycisk "wyleciał" z kontenera i odnosił się do całego okna
+            noBtn.style.position = 'fixed'; 
+            
+            // 2. Przypisujemy nowe współrzędne
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        });
+        
+        // Obsługa dotyku dla telefonów (żeby też uciekał przed palcem)
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Zapobiega kliknięciu
+            const width = window.innerWidth - noBtn.offsetWidth;
+            const height = window.innerHeight - noBtn.offsetHeight;
+            const randomX = Math.floor(Math.random() * width);
+            const randomY = Math.floor(Math.random() * height);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        });
+    </script>
+</body>
+</html>

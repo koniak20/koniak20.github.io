@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yay! ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="static-message">
+            <h2>Wiedziałem, że to dobry wybór! 🥰</h2>
+            <p>Do zobaczenia 14 lutego! 🌹🍫</p>
+            <div class="hearts">❤️ 💖 💘</div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #ffccd5; margin: 20px 0;">
+
+        <div id="login-section">
+            <p style="margin-bottom: 15px; color: #555;">By zobaczyć zdjęcia podaj moją datę urodzenia <br> (format: 01.01.2000) 🎂</p>
+            
+            <div style="margin-bottom: 10px;">
+                <input type="text" id="passwordInput" class="login-input" placeholder="dd.mm.rrrr">
+                <button class="btn yes-btn" onclick="checkPassword()" style="padding: 10px 20px; font-size: 1rem;">Odkryj</button>
+            </div>
+            
+            <p id="error-message" style="color: #d63353; font-weight: bold; display: none; font-size: 0.9rem;">
+                Zła data! Spróbuj jeszcze raz 😢
+            </p>
+        </div>
+
+        <div id="gallery-section" style="display: none;">
+            <div class="photo-placeholder">
+                <img id="valentinePhoto" src="" alt="Nasze zdjęcie">
+            </div>
+            <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Nasze wspomnienia 📸</p>
+        </div>
+
+    </div>
+
+    <script>
+        const PASSWORD_HASH = "55646d192a77b3d8eb2e9d75e5fd0d7c"; 
+        const photos = [
+            'https://placehold.co/300x300/ff9a9e/white?text=Foto+1',
+            'https://placehold.co/300x300/fad0c4/white?text=Foto+2',
+            'https://placehold.co/300x300/ffecd2/white?text=Foto+3',
+            'https://placehold.co/300x300/fcb69f/white?text=Foto+4',
+            'https://placehold.co/300x300/ff9a9e/white?text=Foto+5',
+            'https://placehold.co/300x300/a18cd1/white?text=Foto+6',
+            'https://placehold.co/300x300/fbc2eb/white?text=Foto+7',
+            'https://placehold.co/300x300/8fd3f4/white?text=Foto+8',
+            'https://placehold.co/300x300/84fab0/white?text=Foto+9',
+            'https://placehold.co/300x300/fccb90/white?text=Foto+10'
+        ];
+
+        const loginSection = document.getElementById('login-section');
+        const gallerySection = document.getElementById('gallery-section');
+        const passwordInput = document.getElementById('passwordInput');
+        const errorMsg = document.getElementById('error-message');
+        const photoElement = document.getElementById('valentinePhoto');
+        let currentIndex = 0;
+
+        function checkPassword() {
+            const inputValue = passwordInput.value.trim();
+
+            if (md5(inputValue) === PASSWORD_HASH) {
+                loginSection.style.display = 'none';
+                gallerySection.style.display = 'block';
+                startSlideshow();
+            } else {
+                errorMsg.style.display = 'block';
+                passwordInput.classList.add('shake');
+                passwordInput.style.borderColor = 'red';
+                
+                setTimeout(() => {
+                    passwordInput.classList.remove('shake');
+                }, 500);
+            }
+        }
+
+        passwordInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+
+        function startSlideshow() {
+            photoElement.src = photos[0];
+            setInterval(() => {
+                currentIndex++;
+                if (currentIndex >= photos.length) {
+                    currentIndex = 0;
+                }
+                photoElement.src = photos[currentIndex];
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>

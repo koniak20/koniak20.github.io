@@ -1,0 +1,143 @@
+/* Reset podstawowy */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden; 
+}
+
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9); /* Nieco mniej przezroczyste tło */
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 105, 135, 0.3);
+    max-width: 90%;
+    position: relative;
+    z-index: 1; /* Kontener niżej niż latający przycisk */
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: #ff4d6d;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    min-height: 60px; /* Miejsce na przyciski, żeby tekst nie skoczył jak jeden ucieknie */
+}
+
+.btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.yes-btn {
+    background-color: #ff4d6d;
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+    transition: transform 0.2s;
+}
+
+.yes-btn:hover {
+    transform: scale(1.1);
+    background-color: #d63353;
+}
+
+.no-btn {
+    background-color: #fff;
+    color: #333;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    
+    /* TO NAPRAWIA PROBLEM: */
+    position: relative; /* Na start jest relatywny */
+    z-index: 1000;      /* Zawsze na wierzchu - naprawia "nieklikalność" */
+    
+    /* Animacja ruchu */
+    transition: top 0.4s ease, left 0.4s ease; 
+}
+
+/* Style dla drugiej strony (zachowane z poprzedniej wersji) */
+.photo-placeholder img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 5px solid white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+    transform: rotate(-3deg);
+}
+
+.message h2 {
+    color: #ff4d6d;
+    margin-bottom: 10px;
+}
+
+.hearts {
+    margin-top: 20px;
+    font-size: 2rem;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    .btn { padding: 10px 25px; font-size: 1rem; }
+    .container { padding: 1.5rem; }
+}
+/* --- Styl dla pola logowania --- */
+.login-input {
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    border: 2px solid #ffccd5;
+    border-radius: 10px;
+    margin-right: 10px;
+    outline: none;
+    transition: border-color 0.3s;
+    font-family: 'Poppins', sans-serif;
+    width: 200px;
+    text-align: center;
+}
+
+.login-input:focus {
+    border-color: #ff4d6d;
+}
+
+/* Animacja trzęsienia przy błędnym haśle */
+.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
